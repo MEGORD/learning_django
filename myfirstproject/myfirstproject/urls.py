@@ -14,8 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.urls import include
 from django.urls import path
+from django.shortcuts import render
+
+def home_view(request):
+    name = "Bob"
+
+    return render(request, 'home.html', contex={'name': name})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cities/', include(('cities.urls', 'cities'))),
+    path('hame/', home_view),
 ]
